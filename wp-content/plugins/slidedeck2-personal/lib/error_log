@@ -1,0 +1,1 @@
+[06-Dec-2015 10:15:02 America/Chicago] PHP Fatal error:  Cannot access self:: when no class scope is active in /home3/nucleus/public_html/wp-content/plugins/slidedeck2-personal/lib/constants.php on line 29

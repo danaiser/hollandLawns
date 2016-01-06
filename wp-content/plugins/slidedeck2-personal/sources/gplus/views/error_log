@@ -1,0 +1,1 @@
+[08-Dec-2015 04:24:31 America/Chicago] PHP Fatal error:  Using $this when not in object context in /home3/nucleus/public_html/wp-content/plugins/slidedeck2-personal/sources/gplus/views/show.php on line 36

@@ -1,0 +1,68 @@
+/* #WIDESCREEN
+================================================== */
+    /* min-width of 1280px */
+@media only screen and (min-width: 1350px) and (max-width: 99999px) {
+
+
+
+}
+
+/* #FULL
+================================================== */
+    /* min-width of 960px */
+    @media only screen and (min-width: 960px) and (max-width: 1349px) {
+
+
+
+    }
+
+
+/* #Tablet 
+================================================== */
+    /* max width of 959px */
+    @media only screen and (max-width: 959px) {
+
+.wrapper{width:100%;}
+
+}
+
+
+
+/*  #Mobile
+================================================== */
+    /* max width of 767px */
+    @media only screen and (max-width: 767px) {
+#branding .header-element{
+	width:100%;	
+	height:auto;
+	min-height:50px;
+}
+
+#logo{width:100%;}
+
+#logo img{
+	display:block;
+	width:100px;
+	height:50px;
+	margin:0 auto;	
+}
+
+#primary{
+width:96%;
+margin:20px 2%;	
+}
+
+#content{margin:0;}
+
+#sidebar{
+	float:none;
+	width:96%;
+	margin:22px 0 0 0;
+}
+
+#sidebar span.widget-title{
+	width:100%;
+	margin:18px 0 8px 0;
+}
+
+	}

@@ -1,0 +1,1 @@
+[27-Nov-2015 18:40:09 America/Chicago] PHP Fatal error:  Call to undefined function admin_url() in /home3/nucleus/public_html/wp-content/plugins/slidedeck2-personal/views/help/faqs.php on line 46

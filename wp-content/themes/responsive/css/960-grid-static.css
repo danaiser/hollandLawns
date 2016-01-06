@@ -1,0 +1,93 @@
+/* CSS Resets */
+@import url("normalize.css");
+
+*{
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+}
+.container {
+padding-left: 20px;
+padding-right: 20px;
+}
+
+.row {
+width: 100%;
+max-width: 960px;
+min-width: 960px;
+margin: 0 auto;
+overflow: hidden;
+}
+
+.onecol, .twocol, .threecol, .fourcol, .fivecol, .sixcol, .sevencol, .eightcol, .ninecol, .tencol, .elevencol {
+margin-right: 20px;
+float: left;
+min-height: 1px;
+}
+
+.row .onecol {
+width: 60px;
+}
+
+.row .twocol {
+width: 140px;
+}
+
+.row .threecol {
+width: 220px;
+}
+
+.row .fourcol {
+width: 300px;
+}
+
+.row .fivecol {
+width: 380px;
+}
+
+.row .sixcol {
+width: 460px;
+}
+
+.row .sevencol {
+width: 540px;
+}
+
+.row .eightcol {
+width: 620px;
+}
+
+.row .ninecol {
+width: 700px;
+}
+
+.row .tencol {
+width: 780px;
+}
+
+.row .elevencol {
+width: 860px;
+}
+
+.row .twelvecol {
+width: 940px;
+float: left;
+}
+
+.last {
+margin-right: 0px;
+}
+
+img, object, embed {
+max-width: 100%;
+}
+
+img {
+	height: auto;
+}
+
+.row div{
+	background: #ececec;
+	padding: .5em 0em;
+	margin-bottom: .25em;
+}

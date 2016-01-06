@@ -1,0 +1,1 @@
+[07-Dec-2015 13:06:44 America/Chicago] PHP Fatal error:  Call to undefined function admin_url() in /home3/nucleus/public_html/wp-content/plugins/slidedeck2-personal/views/lenses/add.php on line 40

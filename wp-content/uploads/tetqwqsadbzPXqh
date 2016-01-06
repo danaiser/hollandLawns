@@ -1,0 +1,24 @@
+//After Page Load - Set Height of Sidebar and Content Equal unless Mobile
+jQuery(window).load(function($) {
+	var resizeTimer;
+	var height;
+	resizeSidebar();
+	function resizeSidebar() {
+		if (jQuery(window).width() > 767){	
+			jQuery("#content").css(height,auto);
+			jQuery("#sidebar").css(height,auto);
+			
+			height = jQuery("#content-row").height();
+	   		jQuery("#content").css({height:(height + px)});
+			jQuery("#sidebar").css({height:(height + px)});
+		}else{
+			jQuery("#content").css(height,auto);
+			jQuery("#sidebar").css(height,auto);
+		}	
+	};
+	
+	jQuery(window).resize(function($) {
+		clearTimeout(resizeTimer);
+		resizeTimer = setTimeout(resizeSidebar, 100);
+	});
+});

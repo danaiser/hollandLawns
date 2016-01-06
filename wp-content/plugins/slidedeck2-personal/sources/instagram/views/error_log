@@ -1,0 +1,1 @@
+[07-Dec-2015 18:45:40 America/Chicago] PHP Fatal error:  Using $this when not in object context in /home3/nucleus/public_html/wp-content/plugins/slidedeck2-personal/sources/instagram/views/show.php on line 36

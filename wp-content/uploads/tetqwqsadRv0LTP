@@ -1,0 +1,34 @@
+//jQuery version
+window.device = window.device || desktop;
+(function ($) {
+    use strict;
+    $(function () {
+		var grab_all; 
+		grab_all = document.getElementById("content");
+		var grab_all_html;
+		grab_all_html = grab_all.innerHTML;
+		console.log(grab_all_html);
+		if( grab_all_html.indexOf(ngg-gallery) >= 0){
+			var place_holder = ".ngg-gallery-thumbnail a";
+		}
+		else{
+			var place_holder = ".gallery-icon a";
+		}
+		
+        var myPhotoSwipe = {};
+
+
+            myPhotoSwipe = $(place_holder).photoSwipe({
+                imageScaleMethod: fit,
+                autoStartSlideshow: false,
+                captionAndToolbarAutoHideDelay: 5000,
+                loop: true,
+                doubleTapZoomLevel: 1.5,
+                enableDrag: true,
+                enableMouseWheel: false,
+                enableKeyboard: false,
+                zIndex: 1000
+            });
+    });
+}(jQuery));
+

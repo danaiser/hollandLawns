@@ -1,0 +1,157 @@
+[22-Jun-2015 11:52:42 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/admin-bar.php on line 48
+[22-Jun-2015 11:52:42 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/author-template.php on line 453
+[16-Aug-2015 12:38:51 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home3/nucleus/public_html/wp-includes/rss-functions.php on line 8
+[28-Aug-2015 01:25:18 America/Chicago] PHP Fatal error:  Call to undefined function is_main_site() in /home3/nucleus/public_html/wp-includes/update.php on line 601
+[28-Aug-2015 01:25:18 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/ms-default-constants.php on line 151
+[28-Aug-2015 01:25:22 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-rss.php on line 8
+[28-Aug-2015 01:25:22 America/Chicago] PHP Warning:  require(ABSPATHWPINC/SimplePie/Misc.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/class-simplepie.php on line 5
+[28-Aug-2015 01:25:22 America/Chicago] PHP Warning:  require(ABSPATHWPINC/SimplePie/Misc.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/class-simplepie.php on line 5
+[28-Aug-2015 01:25:22 America/Chicago] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/SimplePie/Misc.php' (include_path='.:/opt/php54/lib/php') in /home3/nucleus/public_html/wp-includes/class-simplepie.php on line 5
+[28-Aug-2015 01:25:22 America/Chicago] PHP Fatal error:  Class 'WP_Image_Editor' not found in /home3/nucleus/public_html/wp-includes/class-wp-image-editor-gd.php on line 17
+[28-Aug-2015 01:25:22 America/Chicago] PHP Warning:  require(ABSPATHWPINC/option.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/functions.php on line 8
+[28-Aug-2015 01:25:22 America/Chicago] PHP Warning:  require(ABSPATHWPINC/option.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/functions.php on line 8
+[28-Aug-2015 01:25:22 America/Chicago] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/option.php' (include_path='.:/opt/php54/lib/php') in /home3/nucleus/public_html/wp-includes/functions.php on line 8
+[28-Aug-2015 01:25:23 America/Chicago] PHP Fatal error:  Class 'Walker' not found in /home3/nucleus/public_html/wp-includes/category-template.php on line 767
+[28-Aug-2015 01:25:23 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home3/nucleus/public_html/wp-includes/registration-functions.php on line 7
+[28-Aug-2015 01:25:24 America/Chicago] PHP Fatal error:  Call to undefined function add_filter() in /home3/nucleus/public_html/wp-includes/post-formats.php on line 170
+[28-Aug-2015 01:25:24 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/kses.php on line 1395
+[28-Aug-2015 01:25:25 America/Chicago] PHP Fatal error:  Class 'WP_Dependencies' not found in /home3/nucleus/public_html/wp-includes/class.wp-styles.php on line 19
+[28-Aug-2015 01:25:26 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-rss2.php on line 8
+[28-Aug-2015 01:25:28 America/Chicago] PHP Fatal error:  Class 'Walker' not found in /home3/nucleus/public_html/wp-includes/post-template.php on line 993
+[28-Aug-2015 01:25:29 America/Chicago] PHP Fatal error:  Call to undefined function add_filter() in /home3/nucleus/public_html/wp-includes/user.php on line 71
+[28-Aug-2015 01:25:29 America/Chicago] PHP Fatal error:  Class 'WP_Dependencies' not found in /home3/nucleus/public_html/wp-includes/class.wp-scripts.php on line 19
+[28-Aug-2015 01:25:29 America/Chicago] PHP Fatal error:  Class 'Walker' not found in /home3/nucleus/public_html/wp-includes/nav-menu-template.php on line 17
+[28-Aug-2015 01:25:29 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/canonical.php on line 530
+[28-Aug-2015 01:25:31 America/Chicago] PHP Fatal error:  Class 'Walker' not found in /home3/nucleus/public_html/wp-includes/comment-template.php on line 1481
+[28-Aug-2015 01:25:32 America/Chicago] PHP Fatal error:  Call to undefined function is_admin() in /home3/nucleus/public_html/wp-includes/vars.php on line 20
+[28-Aug-2015 01:25:32 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/ms-functions.php on line 2052
+[28-Aug-2015 01:25:33 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/post.php on line 165
+[28-Aug-2015 01:25:34 America/Chicago] PHP Fatal error:  Class 'IXR_Client' not found in /home3/nucleus/public_html/wp-includes/class-wp-http-ixr-client.php on line 9
+[28-Aug-2015 01:25:34 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-atom-comments.php on line 8
+[28-Aug-2015 01:25:34 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-rss2-comments.php on line 8
+[28-Aug-2015 01:25:34 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/general-template.php on line 1342
+[28-Aug-2015 01:25:35 America/Chicago] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/script-loader.php on line 25
+[28-Aug-2015 01:25:35 America/Chicago] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/script-loader.php on line 25
+[28-Aug-2015 01:25:35 America/Chicago] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/class.wp-dependencies.php' (include_path='.:/opt/php54/lib/php') in /home3/nucleus/public_html/wp-includes/script-loader.php on line 25
+[28-Aug-2015 01:25:36 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/theme.php on line 671
+[28-Aug-2015 01:25:36 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/admin-bar.php on line 48
+[28-Aug-2015 01:25:36 America/Chicago] PHP Fatal error:  Class 'WP_Image_Editor' not found in /home3/nucleus/public_html/wp-includes/class-wp-image-editor-imagick.php on line 17
+[28-Aug-2015 01:25:38 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home3/nucleus/public_html/wp-includes/rss-functions.php on line 8
+[28-Aug-2015 01:25:39 America/Chicago] PHP Fatal error:  Class 'WP_Widget' not found in /home3/nucleus/public_html/wp-includes/default-widgets.php on line 14
+[28-Aug-2015 01:25:39 America/Chicago] PHP Fatal error:  Call to undefined function add_shortcode() in /home3/nucleus/public_html/wp-includes/media.php on line 611
+[28-Aug-2015 01:25:39 America/Chicago] PHP Fatal error:  Call to undefined function add_filter() in /home3/nucleus/public_html/wp-includes/class-wp-embed.php on line 20
+[28-Aug-2015 01:25:40 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/author-template.php on line 453
+[28-Aug-2015 01:25:41 America/Chicago] PHP Warning:  require(ABSPATHWPINC/ms-load.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/ms-settings.php on line 14
+[28-Aug-2015 01:25:41 America/Chicago] PHP Warning:  require(ABSPATHWPINC/ms-load.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/ms-settings.php on line 14
+[28-Aug-2015 01:25:41 America/Chicago] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/ms-load.php' (include_path='.:/opt/php54/lib/php') in /home3/nucleus/public_html/wp-includes/ms-settings.php on line 14
+[28-Aug-2015 01:25:41 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home3/nucleus/public_html/wp-includes/rss.php on line 19
+[28-Aug-2015 01:25:42 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-rdf.php on line 8
+[28-Aug-2015 01:25:42 America/Chicago] PHP Fatal error:  Class 'IXR_Server' not found in /home3/nucleus/public_html/wp-includes/class-wp-xmlrpc-server.php on line 22
+[28-Aug-2015 01:25:42 America/Chicago] PHP Fatal error:  Call to undefined function add_filter() in /home3/nucleus/public_html/wp-includes/default-filters.php on line 17
+[28-Aug-2015 01:25:42 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home3/nucleus/public_html/wp-includes/registration.php on line 7
+[28-Aug-2015 01:25:43 America/Chicago] PHP Fatal error:  Call to undefined function is_robots() in /home3/nucleus/public_html/wp-includes/template-loader.php on line 28
+[28-Aug-2015 01:25:43 America/Chicago] PHP Fatal error:  Call to undefined function add_filter() in /home3/nucleus/public_html/wp-includes/shortcodes.php on line 388
+[28-Aug-2015 01:25:43 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home3/nucleus/public_html/wp-includes/class-snoopy.php on line 6
+[28-Aug-2015 01:25:45 America/Chicago] PHP Warning:  require_once(ABSPATHWPINC/class-simplepie.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/class-feed.php on line 4
+[28-Aug-2015 01:25:45 America/Chicago] PHP Fatal error:  require_once(): Failed opening required 'ABSPATHWPINC/class-simplepie.php' (include_path='.:/opt/php54/lib/php') in /home3/nucleus/public_html/wp-includes/class-feed.php on line 4
+[28-Aug-2015 01:25:45 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-atom.php on line 8
+[28-Aug-2015 01:25:47 America/Chicago] PHP Fatal error:  Call to undefined function add_filter() in /home3/nucleus/public_html/wp-includes/ms-default-filters.php on line 17
+[28-Aug-2015 01:25:48 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/taxonomy.php on line 121
+[09-Nov-2015 10:10:53 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home3/nucleus/public_html/wp-includes/registration.php on line 7
+[09-Nov-2015 10:10:54 America/Chicago] PHP Fatal error:  Call to undefined function add_filter() in /home3/nucleus/public_html/wp-includes/default-filters.php on line 17
+[09-Nov-2015 10:10:56 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home3/nucleus/public_html/wp-includes/rss-functions.php on line 8
+[09-Nov-2015 10:10:56 America/Chicago] PHP Fatal error:  Class 'WP_Image_Editor' not found in /home3/nucleus/public_html/wp-includes/class-wp-image-editor-imagick.php on line 17
+[09-Nov-2015 10:10:58 America/Chicago] PHP Fatal error:  Call to undefined function add_filter() in /home3/nucleus/public_html/wp-includes/user.php on line 71
+[09-Nov-2015 10:10:58 America/Chicago] PHP Warning:  require_once(ABSPATHWPINC/class-simplepie.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/class-feed.php on line 4
+[09-Nov-2015 10:10:58 America/Chicago] PHP Fatal error:  require_once(): Failed opening required 'ABSPATHWPINC/class-simplepie.php' (include_path='.:/opt/php54/lib/php') in /home3/nucleus/public_html/wp-includes/class-feed.php on line 4
+[09-Nov-2015 10:11:00 America/Chicago] PHP Fatal error:  Call to undefined function add_filter() in /home3/nucleus/public_html/wp-includes/post-formats.php on line 170
+[09-Nov-2015 10:11:00 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-atom.php on line 8
+[09-Nov-2015 10:11:03 America/Chicago] PHP Fatal error:  Call to undefined function is_main_site() in /home3/nucleus/public_html/wp-includes/update.php on line 601
+[09-Nov-2015 10:11:05 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-atom-comments.php on line 8
+[09-Nov-2015 10:11:06 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/canonical.php on line 530
+[09-Nov-2015 10:11:09 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-rss.php on line 8
+[09-Nov-2015 10:11:10 America/Chicago] PHP Warning:  require(ABSPATHWPINC/SimplePie/Misc.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/class-simplepie.php on line 5
+[09-Nov-2015 10:11:10 America/Chicago] PHP Warning:  require(ABSPATHWPINC/SimplePie/Misc.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/class-simplepie.php on line 5
+[09-Nov-2015 10:11:10 America/Chicago] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/SimplePie/Misc.php' (include_path='.:/opt/php54/lib/php') in /home3/nucleus/public_html/wp-includes/class-simplepie.php on line 5
+[09-Nov-2015 10:11:13 America/Chicago] PHP Fatal error:  Call to undefined function add_filter() in /home3/nucleus/public_html/wp-includes/ms-default-filters.php on line 17
+[09-Nov-2015 10:11:14 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/general-template.php on line 1342
+[09-Nov-2015 10:11:14 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/ms-default-constants.php on line 151
+[09-Nov-2015 10:11:15 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home3/nucleus/public_html/wp-includes/registration-functions.php on line 7
+[09-Nov-2015 10:11:15 America/Chicago] PHP Fatal error:  Class 'Walker' not found in /home3/nucleus/public_html/wp-includes/post-template.php on line 993
+[09-Nov-2015 10:11:16 America/Chicago] PHP Fatal error:  Class 'Walker' not found in /home3/nucleus/public_html/wp-includes/nav-menu-template.php on line 17
+[09-Nov-2015 10:11:16 America/Chicago] PHP Fatal error:  Class 'WP_Widget' not found in /home3/nucleus/public_html/wp-includes/default-widgets.php on line 14
+[09-Nov-2015 10:11:16 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-rss2-comments.php on line 8
+[09-Nov-2015 10:11:17 America/Chicago] PHP Fatal error:  Class 'WP_Dependencies' not found in /home3/nucleus/public_html/wp-includes/class.wp-scripts.php on line 19
+[09-Nov-2015 10:11:17 America/Chicago] PHP Fatal error:  Class 'Walker' not found in /home3/nucleus/public_html/wp-includes/comment-template.php on line 1481
+[09-Nov-2015 10:11:20 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/author-template.php on line 453
+[09-Nov-2015 10:11:21 America/Chicago] PHP Fatal error:  Call to undefined function add_shortcode() in /home3/nucleus/public_html/wp-includes/media.php on line 611
+[09-Nov-2015 10:11:21 America/Chicago] PHP Fatal error:  Class 'Walker' not found in /home3/nucleus/public_html/wp-includes/category-template.php on line 767
+[09-Nov-2015 10:11:21 America/Chicago] PHP Warning:  require(ABSPATHWPINC/ms-load.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/ms-settings.php on line 14
+[09-Nov-2015 10:11:21 America/Chicago] PHP Warning:  require(ABSPATHWPINC/ms-load.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/ms-settings.php on line 14
+[09-Nov-2015 10:11:21 America/Chicago] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/ms-load.php' (include_path='.:/opt/php54/lib/php') in /home3/nucleus/public_html/wp-includes/ms-settings.php on line 14
+[09-Nov-2015 10:11:21 America/Chicago] PHP Fatal error:  Class 'WP_Image_Editor' not found in /home3/nucleus/public_html/wp-includes/class-wp-image-editor-gd.php on line 17
+[09-Nov-2015 10:11:21 America/Chicago] PHP Fatal error:  Call to undefined function is_robots() in /home3/nucleus/public_html/wp-includes/template-loader.php on line 28
+[09-Nov-2015 10:11:22 America/Chicago] PHP Fatal error:  Call to undefined function is_admin() in /home3/nucleus/public_html/wp-includes/vars.php on line 20
+[09-Nov-2015 10:11:22 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-rdf.php on line 8
+[09-Nov-2015 10:11:22 America/Chicago] PHP Fatal error:  Call to undefined function add_filter() in /home3/nucleus/public_html/wp-includes/class-wp-embed.php on line 20
+[09-Nov-2015 10:11:23 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/admin-bar.php on line 48
+[09-Nov-2015 10:11:24 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-rss2.php on line 8
+[09-Nov-2015 10:11:24 America/Chicago] PHP Fatal error:  Class 'IXR_Server' not found in /home3/nucleus/public_html/wp-includes/class-wp-xmlrpc-server.php on line 22
+[09-Nov-2015 10:11:26 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/ms-functions.php on line 2052
+[09-Nov-2015 10:11:27 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home3/nucleus/public_html/wp-includes/class-snoopy.php on line 6
+[09-Nov-2015 10:11:27 America/Chicago] PHP Fatal error:  Class 'WP_Dependencies' not found in /home3/nucleus/public_html/wp-includes/class.wp-styles.php on line 19
+[09-Nov-2015 10:11:28 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/theme.php on line 671
+[09-Nov-2015 10:11:30 America/Chicago] PHP Fatal error:  Class 'IXR_Client' not found in /home3/nucleus/public_html/wp-includes/class-wp-http-ixr-client.php on line 9
+[09-Nov-2015 10:11:31 America/Chicago] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/script-loader.php on line 25
+[09-Nov-2015 10:11:31 America/Chicago] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/script-loader.php on line 25
+[09-Nov-2015 10:11:31 America/Chicago] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/class.wp-dependencies.php' (include_path='.:/opt/php54/lib/php') in /home3/nucleus/public_html/wp-includes/script-loader.php on line 25
+[09-Nov-2015 10:11:31 America/Chicago] PHP Fatal error:  Call to undefined function add_filter() in /home3/nucleus/public_html/wp-includes/shortcodes.php on line 388
+[09-Nov-2015 10:11:32 America/Chicago] PHP Warning:  require(ABSPATHWPINC/option.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/functions.php on line 8
+[09-Nov-2015 10:11:32 America/Chicago] PHP Warning:  require(ABSPATHWPINC/option.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/functions.php on line 8
+[09-Nov-2015 10:11:32 America/Chicago] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/option.php' (include_path='.:/opt/php54/lib/php') in /home3/nucleus/public_html/wp-includes/functions.php on line 8
+[09-Nov-2015 10:11:32 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/taxonomy.php on line 121
+[09-Nov-2015 10:11:33 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/post.php on line 165
+[09-Nov-2015 10:11:34 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/kses.php on line 1395
+[09-Nov-2015 10:11:35 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home3/nucleus/public_html/wp-includes/rss.php on line 19
+[22-Nov-2015 15:18:32 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home3/nucleus/public_html/wp-includes/registration.php on line 7
+[22-Nov-2015 15:18:33 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-atom.php on line 8
+[22-Nov-2015 15:18:38 America/Chicago] PHP Fatal error:  Class 'IXR_Server' not found in /home3/nucleus/public_html/wp-includes/class-wp-xmlrpc-server.php on line 23
+[22-Nov-2015 15:18:39 America/Chicago] PHP Warning:  require(ABSPATHWPINC/option.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/functions.php on line 8
+[22-Nov-2015 15:18:39 America/Chicago] PHP Warning:  require(ABSPATHWPINC/option.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/functions.php on line 8
+[22-Nov-2015 15:18:39 America/Chicago] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/option.php' (include_path='.:/opt/php54/lib/php') in /home3/nucleus/public_html/wp-includes/functions.php on line 8
+[22-Nov-2015 15:18:39 America/Chicago] PHP Fatal error:  Class 'IXR_Client' not found in /home3/nucleus/public_html/wp-includes/class-wp-http-ixr-client.php on line 9
+[22-Nov-2015 15:18:41 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-rss2-comments.php on line 8
+[22-Nov-2015 15:18:46 America/Chicago] PHP Fatal error:  Call to undefined function add_filter() in /home3/nucleus/public_html/wp-includes/default-filters.php on line 17
+[22-Nov-2015 15:18:47 America/Chicago] PHP Fatal error:  Call to undefined function is_admin() in /home3/nucleus/public_html/wp-includes/vars.php on line 23
+[22-Nov-2015 15:18:49 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home3/nucleus/public_html/wp-includes/registration-functions.php on line 7
+[22-Nov-2015 15:18:52 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-rdf.php on line 8
+[22-Nov-2015 15:18:52 America/Chicago] PHP Fatal error:  Class 'Walker' not found in /home3/nucleus/public_html/wp-includes/category-template.php on line 967
+[22-Nov-2015 15:18:52 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home3/nucleus/public_html/wp-includes/class-snoopy.php on line 6
+[22-Nov-2015 15:18:53 America/Chicago] PHP Fatal error:  Class 'Walker' not found in /home3/nucleus/public_html/wp-includes/nav-menu-template.php on line 16
+[22-Nov-2015 15:18:53 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home3/nucleus/public_html/wp-includes/rss.php on line 19
+[22-Nov-2015 15:18:53 America/Chicago] PHP Warning:  require_once(ABSPATHWPINC/class-simplepie.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/class-feed.php on line 4
+[22-Nov-2015 15:18:53 America/Chicago] PHP Fatal error:  require_once(): Failed opening required 'ABSPATHWPINC/class-simplepie.php' (include_path='.:/opt/php54/lib/php') in /home3/nucleus/public_html/wp-includes/class-feed.php on line 4
+[22-Nov-2015 15:18:54 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-rss2.php on line 8
+[22-Nov-2015 15:18:57 America/Chicago] PHP Fatal error:  Call to undefined function add_action() in /home3/nucleus/public_html/wp-includes/ms-default-filters.php on line 16
+[22-Nov-2015 15:18:57 America/Chicago] PHP Fatal error:  Class 'Walker' not found in /home3/nucleus/public_html/wp-includes/post-template.php on line 1325
+[22-Nov-2015 15:18:57 America/Chicago] PHP Fatal error:  Class 'WP_Image_Editor' not found in /home3/nucleus/public_html/wp-includes/class-wp-image-editor-imagick.php on line 17
+[22-Nov-2015 15:19:00 America/Chicago] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/script-loader.php on line 25
+[22-Nov-2015 15:19:00 America/Chicago] PHP Warning:  require(ABSPATHWPINC/class.wp-dependencies.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/script-loader.php on line 25
+[22-Nov-2015 15:19:00 America/Chicago] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/class.wp-dependencies.php' (include_path='.:/opt/php54/lib/php') in /home3/nucleus/public_html/wp-includes/script-loader.php on line 25
+[22-Nov-2015 15:19:00 America/Chicago] PHP Fatal error:  Call to undefined function is_robots() in /home3/nucleus/public_html/wp-includes/template-loader.php on line 28
+[22-Nov-2015 15:19:02 America/Chicago] PHP Fatal error:  Call to undefined function add_shortcode() in /home3/nucleus/public_html/wp-includes/media.php on line 831
+[22-Nov-2015 15:19:02 America/Chicago] PHP Fatal error:  Call to undefined function is_main_site() in /home3/nucleus/public_html/wp-includes/update.php on line 678
+[22-Nov-2015 15:19:03 America/Chicago] PHP Fatal error:  Class 'WP_Image_Editor' not found in /home3/nucleus/public_html/wp-includes/class-wp-image-editor-gd.php on line 17
+[22-Nov-2015 15:19:03 America/Chicago] PHP Fatal error:  Class 'WP_Dependencies' not found in /home3/nucleus/public_html/wp-includes/class.wp-scripts.php on line 19
+[22-Nov-2015 15:19:05 America/Chicago] PHP Fatal error:  Class 'WP_Dependencies' not found in /home3/nucleus/public_html/wp-includes/class.wp-styles.php on line 19
+[22-Nov-2015 15:19:06 America/Chicago] PHP Fatal error:  Class 'WP_Widget' not found in /home3/nucleus/public_html/wp-includes/default-widgets.php on line 14
+[22-Nov-2015 15:19:08 America/Chicago] PHP Warning:  require(ABSPATHWPINC/SimplePie/Misc.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/class-simplepie.php on line 5
+[22-Nov-2015 15:19:08 America/Chicago] PHP Warning:  require(ABSPATHWPINC/SimplePie/Misc.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/class-simplepie.php on line 5
+[22-Nov-2015 15:19:08 America/Chicago] PHP Fatal error:  require(): Failed opening required 'ABSPATHWPINC/SimplePie/Misc.php' (include_path='.:/opt/php54/lib/php') in /home3/nucleus/public_html/wp-includes/class-simplepie.php on line 5
+[22-Nov-2015 15:19:11 America/Chicago] PHP Fatal error:  Call to undefined function add_filter() in /home3/nucleus/public_html/wp-includes/class-wp-embed.php on line 28
+[22-Nov-2015 15:19:11 America/Chicago] PHP Warning:  require_once(ABSPATHWPINC/ms-load.php): failed to open stream: No such file or directory in /home3/nucleus/public_html/wp-includes/ms-settings.php on line 14
+[22-Nov-2015 15:19:11 America/Chicago] PHP Fatal error:  require_once(): Failed opening required 'ABSPATHWPINC/ms-load.php' (include_path='.:/opt/php54/lib/php') in /home3/nucleus/public_html/wp-includes/ms-settings.php on line 14
+[22-Nov-2015 15:19:13 America/Chicago] PHP Fatal error:  Call to undefined function _deprecated_file() in /home3/nucleus/public_html/wp-includes/rss-functions.php on line 8
+[22-Nov-2015 15:19:13 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-rss.php on line 8
+[22-Nov-2015 15:26:47 America/Chicago] PHP Fatal error:  Class 'Walker' not found in /home3/nucleus/public_html/wp-includes/comment-template.php on line 1680
+[22-Nov-2015 15:30:34 America/Chicago] PHP Fatal error:  Call to undefined function feed_content_type() in /home3/nucleus/public_html/wp-includes/feed-atom-comments.php on line 8

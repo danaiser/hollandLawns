@@ -1,0 +1,1 @@
+[17-Nov-2015 21:25:09 America/Chicago] PHP Fatal error:  Call to undefined function register_activation_hook() in /home3/nucleus/public_html/wp-content/plugins/slidedeck2-personal/slidedeck2.php on line 4359

